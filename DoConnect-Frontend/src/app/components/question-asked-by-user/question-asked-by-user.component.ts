@@ -13,10 +13,11 @@ export class QuestionAskedByUserComponent implements OnInit {
   userId: any;
   questions!:Question[];
   message!: string;
+  isApprove:any;
 
   constructor(private questionService:QuestionService,private route:ActivatedRoute,private router:Router,private authenticationService:AuthenticationService) { }
 
-  displayedColumns: any[] = ['questionId', 'topic', 'question','askedDateAndTime', 'answer'];
+  displayedColumns: any[] = ['questionId', 'topic', 'question','askedDateAndTime','isApprovedByAdmin', 'answer'];
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params=>{
@@ -27,6 +28,7 @@ export class QuestionAskedByUserComponent implements OnInit {
             response=>{
               if(response!=null)
               this.questions = response;
+              console.log(this.questions)
               if(this.questions.length == 0){
                 this.message = "You have not asked anything";
               }
@@ -43,6 +45,16 @@ export class QuestionAskedByUserComponent implements OnInit {
     this.router.navigate(["admindashboard/answersby/"+element.questionId+"/"+this.userId]);
     else
     this.router.navigate(["dashboard/answersby/"+element.questionId+"/"+this.userId]);
+  }
+  isApproved(element:any){
+    if(element.approvedByAdmin){
+      this.isApprove = "Approved"
+      return true;
+    }
+    else{
+      this.isApprove = "Pending"
+      return true;
+    }
   }
 
 }

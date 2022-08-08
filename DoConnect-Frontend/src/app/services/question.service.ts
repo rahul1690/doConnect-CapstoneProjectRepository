@@ -38,5 +38,6 @@ export class QuestionService {
   getQuestionsAskedByUser(id:any):Observable<Question[]>{
    return this.http.get<Question[]>(this.api+"getQuestionsAskedByUser/"+id);
   }
+
 }
 

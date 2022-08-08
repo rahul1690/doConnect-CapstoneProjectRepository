@@ -80,12 +80,35 @@
 
 .search button{
     margin-left: 1vh;
+     background-color: #2196F3;
 }
 
 .mat-form-field{
     width: 20vw;
 }
 
+
+.approval_{
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.approval-childs_{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.approval-childs_ button{
+    font-size: larger;
+    margin: 1vh;
+    width: 20vh;
+    height: 10vh;
+    background-color: rgb(3,148,135);
+}
 
 
 

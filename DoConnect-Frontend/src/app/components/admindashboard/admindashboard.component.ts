@@ -57,8 +57,21 @@ export class AdmindashboardComponent implements OnInit {
   }
 
   registerAdmin(){
+    this.askQuestion = false;
     this.footer_ = false;
     this.router.navigate(['admindashboard/register']);
+  }
+
+  approveQuestions(){
+    this.askQuestion= false;
+    this.footer_ = false;
+    this.router.navigate(["admindashboard/approvequestions"])
+  }
+
+  approveAnswers(){
+    this.askQuestion= false;
+    this.footer_ = false;
+    this.router.navigate(["admindashboard/questions"])
   }
 
 }

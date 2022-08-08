@@ -39,8 +39,8 @@ export class AuthenticationService {
     return !this.jwtHelperService.isTokenExpired(this.expToken);
   }
 
-  registerUser(user:User):Observable<User>{
-    return this.http.post<User>(this._apiUrl+"register",user);
+  registerUser(user:User){
+    return this.http.post(this._apiUrl+"register",user);
   }
 
   registerAdmin(user: User) {

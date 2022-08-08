@@ -29,8 +29,9 @@
         <div class="user_"><b>{{"Welcome " + username }}</b></div>
         <div class="main-menu">
             <router-outlet></router-outlet>
+            <br>
                 <div class="ask-question" *ngIf="askQuestion" (click)="askQuestionPage()">
-                    <img src="../../../assets/img/question.jpg" width="80vw" alt="">
+                    <img src="../../../assets/img/question.png" width="80vw" alt="">
                     <b>
                         <p>Ask Question</p>
                     </b>

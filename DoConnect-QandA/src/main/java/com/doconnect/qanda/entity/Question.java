@@ -36,7 +36,7 @@ public class Question {
 	
 	private String topic;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String question;
 	
 	private String imgPath;

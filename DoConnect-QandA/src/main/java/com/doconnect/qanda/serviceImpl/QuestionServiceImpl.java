@@ -50,7 +50,7 @@ public class QuestionServiceImpl {
 	}
 	
 	public List<Question> getQuestionList(){
-		return questionRepository.findAll();
+		return questionRepository.findByIsApprovedByAdmin(true);
 	}
 	
 	public Question findQuestionById(Long questionId) {
@@ -73,14 +73,14 @@ public class QuestionServiceImpl {
 		
 		Example<Question> example = Example.of(questionWithTheseWords,exampleMatcher);
 		
-//		List<Question> questions = questionRepository.findAll(example);
-//		List<Question> approvedQuestions = new ArrayList<>();
-//		for(Question q:questions) {
-//			if(q.isApprovedByAdmin()) {
-//				approvedQuestions.add(q);
-//			}
-//		}
-		return questionRepository.findAll(example);
+		List<Question> questions = questionRepository.findAll(example);
+		List<Question> approvedQuestions = new ArrayList<>();
+		for(Question q:questions) {
+			if(q.isApprovedByAdmin()) {
+				approvedQuestions.add(q);
+			}
+		}
+		return approvedQuestions;
 	}
 	
 	public Question updateQuestion(Long questionId,Question questionToBeUpdated) {
@@ -124,6 +124,10 @@ public class QuestionServiceImpl {
 			}
 		}
 		return 1;
+	}
+
+	public List<Question> getQuestionsForApproval() {
+		return questionRepository.findByIsApprovedByAdmin(false);
 	}
 	
 	

@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.doconnect.qanda.entity.Answer;
+import com.doconnect.qanda.entity.Question;
 import com.doconnect.qanda.entity.User;
+import com.doconnect.qanda.serviceImpl.AnswerServiceImpl;
+import com.doconnect.qanda.serviceImpl.QuestionServiceImpl;
 import com.doconnect.qanda.serviceImpl.UserServiceImpl;
 
 @RestController
@@ -24,8 +28,14 @@ public class AdminRoleController {
 	@Autowired
 	UserServiceImpl userService;
 	
+	@Autowired
+	QuestionServiceImpl questionService;
+	
+	@Autowired
+	AnswerServiceImpl answerService;
+	
 	@PostMapping("/registerAdmin")
-	public User registerAdmin(@RequestBody User user) {
+	public int registerAdmin(@RequestBody User user) {
 		user.setRoles("ROLE_ADMIN");
 		return userService.addUser(user);
 	}
@@ -54,6 +64,16 @@ public class AdminRoleController {
 	public User findUserByQuestionId(@PathVariable Long questionId) {
 		return userService.findUserByQuestionId(questionId);
 	}
+	
+	@GetMapping("/getQuestionsForApproval")
+	public List<Question> getQuestionsForApproval(){
+		return questionService.getQuestionsForApproval();
+	}
+	
+	@GetMapping("/getAnswersForApproval")
+	public List<Answer> getAnswersForApproval(){
+		return answerService.getAnswerForApproval();
+		}
 	
 	@GetMapping("/approveQuestionById/{questionId}")
 	public int approveQuestionById(@PathVariable Long questionId) {

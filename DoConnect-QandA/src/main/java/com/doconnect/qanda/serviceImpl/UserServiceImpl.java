@@ -3,6 +3,7 @@ package com.doconnect.qanda.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -16,6 +17,7 @@ import com.doconnect.qanda.entity.Answer;
 import com.doconnect.qanda.entity.Question;
 import com.doconnect.qanda.entity.User;
 import com.doconnect.qanda.exceptions.UsernameNotFoundException;
+import com.doconnect.qanda.repository.AnswerRepository;
 import com.doconnect.qanda.repository.QuestionRepository;
 import com.doconnect.qanda.repository.UserRepository;
 
@@ -37,10 +39,28 @@ public class UserServiceImpl {
 	@Autowired
 	QuestionRepository questionRepository;
 	
+	@Autowired
+	AnswerRepository answerRepository;
 	
-	public User addUser(User user) {
+	
+	public int addUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		return userRepository.save(user);
+		User isThereAUserWithUsername = userRepository.findByUsername(user.getUsername());
+		User isThereAUserWithEmail = userRepository.findByEmail(user.getEmail());
+		
+		if(isThereAUserWithUsername != null) {
+			return -1;
+		}
+		else if(isThereAUserWithEmail != null)
+		   return -1;
+		
+		else {
+			user.setRoles("ROLE_USER,");
+			System.out.println(user.getRoles());
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			userRepository.save(user);
+			return 1;
+	}
 	}
 	
 	@Transactional
@@ -58,7 +78,6 @@ public class UserServiceImpl {
 			return null;
 		}
 		return user;
-		
 	}
 	
 	public User updateUser(Long userId, User userToBeUpdated) {
@@ -113,6 +132,7 @@ public class UserServiceImpl {
 	public int approveQuestionById(Long questionId) {
 		Question question = questionService.findQuestionById(questionId);
 		question.setApprovedByAdmin(true);
+		System.out.println(question+"dfgdg");
 		questionRepository.save(question);
 		return 1;
 	}
@@ -120,6 +140,8 @@ public class UserServiceImpl {
 	public int approveAnswerById(Long answerId) {
 		Answer answer = answerService.findAnswerById(answerId);
 		answer.setApprovedByAdmin(true);
+		System.out.println(answer+"dasf");
+		answerRepository.save(answer);
 		return 1;
 	}
 }

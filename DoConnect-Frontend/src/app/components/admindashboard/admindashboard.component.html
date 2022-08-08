@@ -1,48 +1,63 @@
+<div class="dashboard_">
+    <mat-toolbar class="header_">
+        <div class="home_">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+                [matMenuTriggerFor]="menu">
+                <mat-icon>menu</mat-icon>
+                <mat-menu #menu="matMenu" class="menu_">
+                    <button mat-menu-item (click)="openProfile()">Profile</button>
+                    <button mat-menu-item (click)="registerAdmin()">Register Admin</button>
+                    <button mat-menu-item (click)="getUsers()">Users</button>
+                    <button mat-menu-item>Questions Asked</button>
 
-    <div class="dashboard_">
-        <mat-toolbar class="header_">
-            <div class="home_">
-                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-                    [matMenuTriggerFor]="menu">
-                    <mat-icon>menu</mat-icon>
-                    <mat-menu #menu="matMenu" class="menu_">
-                        <button mat-menu-item (click)="openProfile()">Profile</button>
-                        <button mat-menu-item (click)="registerAdmin()">Register Admin</button>
-                        <button mat-menu-item (click)="getUsers()">Users</button>
-                        <button mat-menu-item>Questions Asked</button>
+                </mat-menu>
+            </button>
+            <img src="../../../assets/img/logo.png" width="35px" alt="" (click)="home()">
+            <span (click)="home()">DoConnect</span>
 
-                    </mat-menu>
-                </button>
-                    <img src="../../../assets/img/logo.png" width="35px" alt="" (click)="home()">
-                    <span (click)="home()">DoConnect</span>
-                
-                    
-                </div>
-            
 
-            <div class="right-comp">
-                <div class="search">
-                    <mat-form-field class="example-full-width " appearance="fill" >
-                        <input matInput placeholder="search" [(ngModel)]="search">
-                      </mat-form-field>
-                            <button mat-raised-button color="primary" type="submit" (click)="searchQuestion()">Search</button>
-                </div>
-                <div>
-                    <button mat-raised-button type="submit" class="button_" color="primary" (click)="logout()">Logout</button>
-                </div>
+        </div>
+
+
+        <div class="right-comp">
+            <div class="search">
+                <mat-form-field class="example-full-width " appearance="fill">
+                    <input matInput placeholder="search" [(ngModel)]="search">
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" (click)="searchQuestion()">Search</button>
             </div>
-        </mat-toolbar>
-        <div class="user_"><b>{{"Welcome " + username }}</b></div>
-        <div class="main-menu">
-            <router-outlet></router-outlet>
+            <div>
+                <button mat-raised-button type="submit" class="button_" color="primary"
+                    (click)="logout()">Logout</button>
+            </div>
+        </div>
+    </mat-toolbar>
+    <div class="user_"><b>{{"Welcome " + username }}</b></div>
+    <div class="main-menu" >
+        <router-outlet></router-outlet>
+        <div class="approval_" *ngIf="askQuestion">
+            <b><h2>Approve</h2></b>
+            <div class="approval-childs_">
+                <button mat-raised-button color="primary" (click)="approveQuestions()">Questions</button>
+                <button mat-raised-button color="primary"(click)="approveAnswers()">Answers</button>
                 <div class="ask-question" *ngIf="askQuestion" (click)="askQuestionPage()">
-                    <img src="../../../assets/img/question.jpg" width="80vw" alt="">
+                    <img src="../../../assets/img/question.png" width="80vw" alt="">
                     <b>
                         <p>Ask Question</p>
                     </b>
+                </div>
+            </div>
+            <div class="ask-question" *ngIf="askQuestion" (click)="askQuestionPage()">
+                <img src="../../../assets/img/question.png" width="80vw" alt="">
+                <b>
+                    <p>Ask Question</p>
+                </b>
             </div>
         </div>
-    
+        <br>
+        
+    </div>
+
 
 
     <mat-toolbar class="footer_" *ngIf="footer_">

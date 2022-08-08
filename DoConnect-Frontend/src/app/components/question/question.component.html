@@ -1,4 +1,5 @@
 <div class="question-list" *ngIf="questions != null && questions.length != 0">
+  <h3>Questions</h3>
     <table mat-table [dataSource]="questions" class="mat-table" >
 
         <ng-container matColumnDef="questionId">

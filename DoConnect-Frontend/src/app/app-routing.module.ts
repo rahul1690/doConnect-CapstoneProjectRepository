@@ -1,3 +1,5 @@
+import { ApproveAnswersComponent } from './components/approve-answers/approve-answers.component';
+import { ApproveQuestionsComponent } from './components/approve-questions/approve-questions.component';
 import { AdminauthguardService } from './services/adminauthguard.service';
 import { AuthguardService } from './services/authguard.service';
 import { AnswerGivenByUserComponent } from './components/answer-given-by-user/answer-given-by-user.component';
@@ -36,13 +38,16 @@ const routes: Routes = [
 
   { path:'admindashboard',component:AdmindashboardComponent,children:[
     { path:'askquestion',component:AskQuestionComponent},
+    { path:'questions',component:QuestionComponent},
     { path:'questions/:search',component:QuestionComponent},
     { path:'answer/:questionId/:search',component:AnswerComponent},
     { path:'profile',component:ProfileComponent},
     { path:'register',component:RegisterComponent},
     { path:'users',component:UsersComponent},
     { path:'questionsby/:userId',component:QuestionAskedByUserComponent},
-    { path:'answersby/:userId',component:AnswerGivenByUserComponent}
+    { path:'answersby/:userId',component:AnswerGivenByUserComponent},
+    { path:'approvequestions',component:ApproveQuestionsComponent},
+    { path:'approveanswers/:questionId',component:ApproveAnswersComponent}
   ],canActivate:[AdminauthguardService]},
 
 

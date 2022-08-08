@@ -22,6 +22,10 @@
             <td mat-cell *matCellDef="let element">{{element.askedDateAndTime | date:'short'}}</td>
           </ng-container>
 
+          <ng-container matColumnDef="isApprovedByAdmin">
+            <th mat-header-cell *matHeaderCellDef> <b>Admin Approval</b></th>
+            <td mat-cell *matCellDef="let element" ><div *ngIf="isApproved(element)">{{isApprove}}</div></td>
+          </ng-container>
           
           <ng-container matColumnDef="answer">
             <th mat-header-cell *matHeaderCellDef> <b>Answer</b> </th>

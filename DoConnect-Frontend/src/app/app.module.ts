@@ -28,6 +28,8 @@ import {MatTableModule} from '@angular/material/table';
 import { UsersComponent } from './components/users/users.component';
 import { QuestionAskedByUserComponent } from './components/question-asked-by-user/question-asked-by-user.component';
 import { AnswerGivenByUserComponent } from './components/answer-given-by-user/answer-given-by-user.component';
+import { ApproveQuestionsComponent } from './components/approve-questions/approve-questions.component';
+import { ApproveAnswersComponent } from './components/approve-answers/approve-answers.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { AnswerGivenByUserComponent } from './components/answer-given-by-user/an
     UsersComponent,
     QuestionAskedByUserComponent,
     AnswerGivenByUserComponent,
+    ApproveQuestionsComponent,
+    ApproveAnswersComponent,
   ],
   imports: [
     BrowserModule,

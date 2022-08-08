@@ -37,7 +37,7 @@ public class AuthenticateController {
 	JwtUtil jwtUtil;
 	
 	@PostMapping("/register")
-	public User register(@RequestBody User user) {
+	public int register(@RequestBody User user) {
 		user.setRoles("ROLE_USER");
 		return userService.addUser(user);
 	}
@@ -65,5 +65,4 @@ public class AuthenticateController {
 	public User getUserDetails() {
 		return userService.getUserDetails();
 	}
-	
 }

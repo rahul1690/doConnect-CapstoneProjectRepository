@@ -1,11 +1,9 @@
-export class Answer{
-    answer!:string;
-    answeredUserId:any;
-    answerdQuestionId:any;
+import { User } from './User';
+import { Question } from './Question';
+export interface Answer{
+    answer:string;
+    question:Question;
+    answeredDateAndTime:Date;
+    user_answer:User;
 
-    constructor(answer:string,answeredUserId:any,answeredQuestion:any){
-        this.answer = answer;
-        this.answerdQuestionId = answeredQuestion;
-        this.answeredUserId = answeredUserId
-    }
 }

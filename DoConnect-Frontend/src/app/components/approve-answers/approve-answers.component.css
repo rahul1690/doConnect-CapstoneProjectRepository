@@ -1,0 +1,65 @@
+.answer-list table{
+    color: white;
+    width: 80vw;
+    height: 15vh;
+}
+
+.mat-raised-button{
+    background-color: #2196F3; 
+}
+
+.split{
+    background-color: #5aacef; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh;
+    border-radius: 5px;
+}
+.question_{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 81vw;
+}
+.question_ mat-card{
+    margin: 1px;
+}
+
+.answer{
+    background-color: rgb(228, 225, 225);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.form-class{
+    padding: 1vh 6vw;
+    color: black;
+}
+
+
+.form-class div{
+    margin: 2vh;
+}
+
+.mat-form-field{
+    width: 40vw;
+}
+
+
+.heading h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading h2 img{
+    margin-right: 5px;
+}
+
+.approve{
+    background-color: rgb(3,148,135);
+}

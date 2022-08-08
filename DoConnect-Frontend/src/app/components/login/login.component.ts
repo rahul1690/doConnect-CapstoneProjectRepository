@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit {
           }
         }
       ,error=>{
-        this.message="Bad Credentials!";
-        console.log(this.error);
+        if(error.status == 401)
+        this.message = "Error "+error.status + ": Bad Credentials!";
       })
     }
   }

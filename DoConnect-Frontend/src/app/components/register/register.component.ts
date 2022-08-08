@@ -33,8 +33,12 @@ export class RegisterComponent implements OnInit {
       {
         this.authenticationService.registerAdmin(user).subscribe(
           response=>{
-            if(response!=null){
+            
+            if(response == 1 ){
               this.router.navigate(['admindashboard']);
+            }
+            else{
+              console.log("Username or Email already exists");
             }
           }
         )
@@ -42,9 +46,10 @@ export class RegisterComponent implements OnInit {
       else{
         this.authenticationService.registerUser(user).subscribe(
           response=>{
-            if(response != null){
+            if(response == 1)
               this.router.navigate(['']);
-            }
+            else
+            console.log("Username or Email already exists");
           }
         )
       }
