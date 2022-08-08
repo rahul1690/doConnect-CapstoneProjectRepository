@@ -1,0 +1,5 @@
+package com.doconnect.questionAndAnswers.entity;
+
+public class Comment {
+
+}

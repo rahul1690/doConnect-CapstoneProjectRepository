@@ -1,0 +1,27 @@
+package com.doconnect.qnada.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.doconnect.qanda.entity.Question;
+import com.doconnect.qnada.repository.QuestionRepository;
+
+@Service
+public class QuestionServiceImpl {
+
+	@Autowired
+	private QuestionRepository questionRepository;
+	
+	public Question addQuestion(Question question) {
+		return questionRepository.save(question);
+	}
+	
+	public List<Question> getQuestionList(){
+		return questionRepository.findAll();
+	}
+	
+	
+	
+}

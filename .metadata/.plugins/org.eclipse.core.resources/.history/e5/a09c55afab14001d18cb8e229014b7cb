@@ -1,0 +1,13 @@
+package com.doconnect.qnada.serviceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.doconnect.qnada.repository.AnswerRepository;
+
+@Service
+public class AnswerServiceImpl {
+
+	@Autowired
+	private AnswerRepository answerRepository;
+}

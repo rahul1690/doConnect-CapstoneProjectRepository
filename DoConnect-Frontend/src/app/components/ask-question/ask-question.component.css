@@ -1,0 +1,38 @@
+.ask-question{
+    height: 100vh;
+    background-color: rgb(228, 225, 225);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.form-class{
+    padding: 1vh 6vw;
+    color: black;
+}
+
+
+.form-class div{
+    margin: 2vh;
+}
+
+.mat-form-field{
+    width: 50vw;
+}
+
+
+.heading h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading h2 img{
+    margin-right: 5px;
+}
+
+.mat-raised-button{
+    background-color: #2196F3; 
+}

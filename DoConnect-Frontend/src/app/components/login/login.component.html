@@ -1,0 +1,31 @@
+<div class="login-form">
+    <mat-card class="example-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" class="form-class">
+        <div class="heading"><h2><img src="../../../assets/img/login.png" width="40px" alt="">Sign In</h2></div>
+        <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter Username</mat-label>
+              <input matInput placeholder="username" id="username" class="_input" formControlName="username">
+              <mat-error *ngIf="!username?.dirty && username?.touched || username?.invalid">required field*</mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter Password</mat-label>
+              <input matInput type="password" placeholder="password" id="password" class="_input" formControlName="password">
+              <mat-error *ngIf="!password?.dirty && password?.touched || password?.invalid">required field*</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-raised-button type="submit" color="primary">Login</button>
+          </div>
+
+          <b><div>{{message}}</div></b>
+          <div>
+            <p>Don't have an account? <span routerLink="../register">Sign up</span></p>
+          </div>
+    </form>
+</mat-card>
+</div>

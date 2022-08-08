@@ -1,0 +1,5 @@
+package com.doconnect.questionAndAnswers.controller;
+
+public class QuestionController {
+
+}

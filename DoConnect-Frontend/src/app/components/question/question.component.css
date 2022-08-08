@@ -1,0 +1,9 @@
+.question-list table{
+    color: white;
+    width: 70vw;
+    height: 15vh;
+}
+
+.mat-raised-button{
+    background-color: #2196F3; 
+}

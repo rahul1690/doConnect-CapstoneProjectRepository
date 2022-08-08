@@ -1,0 +1,5 @@
+package com.doconnect.qanda.exceptions;
+
+public class AnswerNotFoundException extends Exception{
+
+}

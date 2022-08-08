@@ -1,0 +1,5 @@
+package com.doconnect.qanda.config;
+
+public class SecurityConfig {
+
+}

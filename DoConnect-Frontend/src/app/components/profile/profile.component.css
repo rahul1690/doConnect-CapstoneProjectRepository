@@ -1,0 +1,27 @@
+.profile_{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.split{
+    background-color: #5aacef; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh;
+    border-radius: 5px;
+}
+
+.profileDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.profileDetails mat-card{
+    margin: 0.5vh 4vh;
+    width: 20vw;
+}

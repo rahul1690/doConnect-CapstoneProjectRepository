@@ -1,0 +1,49 @@
+package com.doconnect.questionAndAnswers;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.doconnect.questionAndAnswers.entity.Answer;
+import com.doconnect.questionAndAnswers.entity.Question;
+import com.doconnect.questionAndAnswers.repository.QuestionRepository;
+
+import lombok.extern.slf4j.Slf4j;
+
+@SpringBootApplication
+@Slf4j
+public class QuestionAndAnswerApplication implements CommandLineRunner{
+
+	@Autowired
+	QuestionRepository questionRepository;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(QuestionAndAnswerApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		Answer a = Answer.builder().answerId(1L).answer("java is a programming language").build();
+		Answer a1 = Answer.builder().answerId(2L).answer("java is platform independent language").build();
+		List<Answer> answers = new ArrayList<>();
+		answers.add(a);
+		answers.add(a1);
+		Question q =  Question.builder().questionId(1L).topic("Technology").question("what is java?").answers(answers).build();
+		
+		questionRepository.save(q);
+		
+		List<Question> questions = new ArrayList<>();
+		questions = questionRepository.findAll();
+//		
+//		log.info("question ->{}", questions);
+//		log.info("answers ->{}", answers);
+		
+		
+	}
+
+}

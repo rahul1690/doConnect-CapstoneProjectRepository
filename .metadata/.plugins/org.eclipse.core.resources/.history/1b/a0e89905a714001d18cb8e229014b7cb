@@ -1,0 +1,5 @@
+package com.doconnect.qnada.controller;
+
+public class UserRoleController {
+
+}

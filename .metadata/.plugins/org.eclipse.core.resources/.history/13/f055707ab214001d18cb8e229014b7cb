@@ -1,0 +1,23 @@
+package com.doconnect.qanda.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.doconnect.qanda.entity.Answer;
+import com.doconnect.qanda.serviceImpl.AnswerServiceImpl;
+
+@RestController
+@RequestMapping("/answer")
+public class AnswerController {
+	
+	@Autowired
+	private AnswerServiceImpl answerService;
+	
+	@PostMapping("addAnswer")
+	public void addAnswer(@RequestBody Answer answer) {
+		
+	}
+}

@@ -1,0 +1,37 @@
+package com.doconnect.questionAndAnswers.entity;
+
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Answer {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "answer_id")
+	private Long answerId;
+	
+	private String answer;
+	
+	private int likes;
+	
+	@ToString.Exclude
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Question question;
+}

@@ -1,0 +1,51 @@
+package com.doconnect.qnada.serviceImpl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.doconnect.qnada.entity.User;
+import com.doconnect.qnada.exceptions.UsernameNotFoundException;
+import com.doconnect.qnada.repository.UserRepository;
+
+@Service
+public class UserServiceImpl {
+
+	@Autowired
+	UserRepository userRepository;
+	
+	public User addUser(User user) {
+		return userRepository.save(user);
+	}
+	
+	public List<User> getUserList(){
+		return userRepository.findAll();
+	}
+	
+	public User findUserById(Long UserId){
+		User user = new User();
+		try {
+			Optional<User> _user = Optional.of(userRepository.findById(UserId).orElseThrow(()->new UsernameNotFoundException("Username Not Found!")));
+			user = _user.get();
+		} catch (UsernameNotFoundException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		return user;
+		
+	}
+	
+	public User updateUser(Long userId, User userToBeUpdated) {
+		User user = findUserById(userId);
+		user = userToBeUpdated;
+		return userRepository.save(user);
+	}
+	
+	public String deleteUserById(Long userId) {
+		User user =  findUserById(userId);
+		userRepository.deleteById(user.getUserId());
+		return "User with name "+user.getFirstName()+" "+user.getLastName()+" deleted";
+	}
+}

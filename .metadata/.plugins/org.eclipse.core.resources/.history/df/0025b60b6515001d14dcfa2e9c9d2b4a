@@ -1,0 +1,30 @@
+package com.studentmanagement.serviceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.studentmanagement.entity.Student;
+import com.studentmanagement.repositoy.StudentRepository;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService{
+
+	@Autowired
+	StudentRepository studentRepository;
+	
+	@Autowired
+	UserDetailsImpl userDetailsImpl;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Student student = studentRepository.findByUsername(username);
+		if(student != null) {
+			return new UserDetailsImpl(student);
+		}
+		throw new UsernameNotFoundException("Username Not Found!");
+	}
+
+}

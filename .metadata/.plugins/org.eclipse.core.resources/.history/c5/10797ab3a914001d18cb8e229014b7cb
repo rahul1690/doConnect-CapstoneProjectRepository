@@ -1,0 +1,5 @@
+package com.doconnect.qnada.exceptions;
+
+public class UsernameNotFoundException {
+
+}

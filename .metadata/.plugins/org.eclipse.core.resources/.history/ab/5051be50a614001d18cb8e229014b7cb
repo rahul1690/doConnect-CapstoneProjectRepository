@@ -1,0 +1,5 @@
+package com.doconnect.qnada.serviceImpl;
+
+public class QuestionServiceImpl {
+
+}

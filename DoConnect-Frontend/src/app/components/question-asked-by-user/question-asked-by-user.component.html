@@ -1,0 +1,35 @@
+<div class="question-list" *ngIf="questions != null && questions.length != 0">
+    <table mat-table [dataSource]="questions" class="mat-table" >
+
+   
+        <ng-container matColumnDef="questionId">
+          <th mat-header-cell *matHeaderCellDef> <b>Question Id</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.questionId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="topic">
+          <th mat-header-cell *matHeaderCellDef> <b>Topic</b></th>
+          <td mat-cell *matCellDef="let element">{{element.topic}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="question">
+            <th mat-header-cell *matHeaderCellDef> <b>Question</b> </th>
+            <td mat-cell *matCellDef="let element">{{element.question}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="askedDateAndTime">
+            <th mat-header-cell *matHeaderCellDef> <b>Asked At</b></th>
+            <td mat-cell *matCellDef="let element">{{element.askedDateAndTime | date:'short'}}</td>
+          </ng-container>
+
+          
+          <ng-container matColumnDef="answer">
+            <th mat-header-cell *matHeaderCellDef> <b>Answer</b> </th>
+            <td mat-cell *matCellDef="let element" ><button mat-raised-button (click)= getAnswer(element)>Answer</button></td>
+          </ng-container>
+          
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>
+<b><div style="font-size: larger;">{{message}}</div></b>

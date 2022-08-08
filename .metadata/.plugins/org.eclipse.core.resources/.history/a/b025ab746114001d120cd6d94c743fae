@@ -1,0 +1,21 @@
+package com.doconnect.questionAndAnswers.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.doconnect.questionAndAnswers.entity.Question;
+import com.doconnect.questionAndAnswers.repository.QuestionRepository;
+
+@RestController
+public class QuestionController {
+
+	@Autowired
+	QuestionRepository repository;
+	
+	@PostMapping("/saveQuestion")
+	public Question saveQuestion(Question question) {
+		System.out.println(question);
+		return repository.save(question);
+	}
+}

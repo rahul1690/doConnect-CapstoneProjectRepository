@@ -1,0 +1,41 @@
+<div class="ask-question_">
+    <mat-card class="example-card">
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit(questionForm.value)" class="form-class">
+            <div class="heading">
+                <h2>Question Form</h2>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Topic</mat-label>
+                    <input matInput placeholder="Topic" id="topic" class="_input" formControlName="topic">
+                    <mat-error *ngIf="!topic?.dirty && topic?.touched || topic?.invalid">required field*</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Question</mat-label>
+                    <input matInput placeholder="Question" id="question" class="_input" formControlName="question">
+                    <mat-error *ngIf="!question?.dirty && question?.touched || question?.invalid">required field*
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div style="text-align: center;">
+                <label for="questionImg">Upload Image</label><br>
+                <button type="button" mat-raised-button (click)="fileInput.click()">Choose File </button>
+                <input hidden (change)="onFileSelected($event)" formControlName="questionImg" #fileInput type="file"
+                    id="file">
+                    <p>{{ this.questionForm.get('questionImg')?.value }}</p>
+            </div>
+
+            <br>
+
+            <div style="text-align: center;">
+                <button mat-raised-button type="submit" >Submit</button>
+                </div>
+
+                <b><div style="color:green;text-align: center;">{{message}}</div></b>
+        </form>
+    </mat-card>
+</div>
+<router-outlet></router-outlet>

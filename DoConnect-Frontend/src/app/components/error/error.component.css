@@ -1,0 +1,10 @@
+div{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mat-raised-button{
+    background-color: #2196F3; 
+}

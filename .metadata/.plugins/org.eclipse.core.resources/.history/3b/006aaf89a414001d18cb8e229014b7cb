@@ -1,0 +1,5 @@
+package com.doconnect.qnada.entity;
+
+public class User {
+
+}

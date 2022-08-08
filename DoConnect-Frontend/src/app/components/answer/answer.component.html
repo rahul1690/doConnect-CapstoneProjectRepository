@@ -1,0 +1,66 @@
+<div>
+    <div>
+        <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+    </div>
+    <br>
+    <div class="split_">
+    <div class="question_" *ngIf=" question != null  && answers != null">
+      <mat-card> <b>Question:</b>{{question.question}}</mat-card>
+      <mat-card><b>Topic:</b> {{question.topic}}</mat-card> 
+      <mat-card><b>Asked At:</b>{{question.askedDateAndTime | date:'short' }}</mat-card>
+      <mat-card><b>Asked By: </b>{{question.user_question.firstName}}</mat-card>
+  </div>
+  <br>
+    <div class="answer-list" >
+        <table mat-table [dataSource]="answers" class="mat-table"*ngIf="question!= null && answers != null">
+    
+              <ng-container matColumnDef="answer">
+                <th mat-header-cell *matHeaderCellDef> <b>Answer</b></th>
+                <td mat-cell *matCellDef="let element">{{element.answer}}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="answeredDateAndTime">
+                <th mat-header-cell *matHeaderCellDef> <b>Answered at</b> </th>
+                <td mat-cell *matCellDef="let element" >{{element.answeredDateAndTime | date:'short'}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="answeredBy">
+                <th mat-header-cell *matHeaderCellDef> <b>Answered By</b> </th>
+                <td mat-cell *matCellDef="let element" >{{element.user_answer.firstName}}</td>
+              </ng-container>
+              
+              <button mat-raised-button >Add Answer</button>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+          <br>
+          <div class="answer" style="text-align: center;">
+            <mat-card class="example-card">
+                <form [formGroup]="answerForm" (ngSubmit)="onSubmit(answerForm.value)" class="form-class">
+                    <div class="heading">
+                        <h2>Answer Form</h2>
+                    </div>
+                    <div class="example-container">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Answer</mat-label>
+                            <input matInput placeholder="Write Your Answer" id="question" class="_input" formControlName="answer">
+                            <mat-error *ngIf="!answer?.dirty && answer?.touched || answer?.invalid">required field*
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+        
+                    <br>
+        
+                    <div style="text-align: center;">
+                        <button mat-raised-button type="submit" >Submit</button>
+                        </div>
+        
+                        <b><div style="color:green;text-align: center;">{{response}}</div></b>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+    <!-- <b><div style="font-size: larger;">{{message}}</div></b> -->
+</div>
+

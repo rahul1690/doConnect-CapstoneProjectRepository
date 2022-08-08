@@ -1,0 +1,5 @@
+package com.doconnect.questionAndAnswers.repository;
+
+public interface QuestionRepository {
+
+}

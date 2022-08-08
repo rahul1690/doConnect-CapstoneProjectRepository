@@ -1,0 +1,12 @@
+<div class="profile_">
+    <div class="split">
+        <img src="../../../assets/img/user.png" width="180vw" alt="">
+        <div class="profileDetails" *ngIf=" user != undefined">
+            <mat-card>Username:  {{user.username}}</mat-card>
+            <mat-card>First Name:  {{user.firstName}}</mat-card>
+            <mat-card>Last Name:  {{user.lastName}}</mat-card>
+            <mat-card>Email:  {{user.email}}</mat-card>
+            <mat-card>Phone Number:  {{user.phoneNumber}}</mat-card>
+        </div>
+    </div>
+</div>

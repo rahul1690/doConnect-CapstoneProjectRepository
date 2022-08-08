@@ -1,0 +1,69 @@
+
+<div class="register-form">
+    <mat-card class="example-card">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)" class="form-class">
+        <div class="heading"><h2><img src="../../../assets/img/edit.png" width="40px" alt="">Sign Up</h2></div>
+        <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="First Name" id="firstName" formControlName="firstName">
+              <mat-error *ngIf="firstName?.dirty || firstName?.touched && firstName?.invalid">
+                <mat-error *ngIf="firstName?.errors?.['required']">required field*</mat-error>
+                <mat-error *ngIf="firstName?.errors?.['maxLength']">max length can be 25*</mat-error>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Last Name" id="lastName" formControlName="lastName">
+              <mat-error *ngIf="lastName?.dirty || lastName?.touched && lastName?.invalid">
+                <mat-error *ngIf="lastName?.errors?.['required']">required field*</mat-error>
+                <mat-error *ngIf="lastName?.errors?.['maxLength']">max length can be 25*</mat-error>
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+
+          <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" id="email" formControlName="email">
+              <mat-error *ngIf=" email?.invalid && ( email?.dirty || email?.touched)">
+                <mat-error *ngIf="email?.errors?.['required']">required field*</mat-error>
+                <mat-error *ngIf="email?.errors?.['email']">enter valid email*</mat-error>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Username</mat-label>
+              <input matInput placeholder="username" id="username" formControlName="username">
+              <mat-error *ngIf="!username?.dirty && username?.touched || username?.invalid">required field*</mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="password" id="password" formControlName="password">
+              <mat-error *ngIf="!password?.dirty && password?.touched || password?.invalid">required field*</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Phone Number</mat-label>
+              <input matInput type="Phone Number" placeholder="phoneNumber" id="phoneNumber" formControlName="phoneNumber">
+              <mat-error *ngIf="!phoneNumber?.dirty && phoneNumber?.touched || phoneNumber?.invalid">required field*</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-raised-button type="submit" color="primary">Register</button>
+          </div>
+    </form>
+</mat-card>
+</div>
