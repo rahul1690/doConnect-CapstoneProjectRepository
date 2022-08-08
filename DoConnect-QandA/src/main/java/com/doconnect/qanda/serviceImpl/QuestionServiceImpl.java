@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,11 +68,18 @@ public class QuestionServiceImpl {
 	public List<Question> getQuestionsWithTheseWords(String words){
 		Question questionWithTheseWords = new Question();
 		questionWithTheseWords.setQuestion(words);
-		
-		ExampleMatcher exampleMatcher = ExampleMatcher.matching().withMatcher("question", GenericPropertyMatchers.contains()).withIgnoreCase().withIgnorePaths("questionId","answers","topic");
+		System.out.println(questionWithTheseWords);
+		ExampleMatcher exampleMatcher = ExampleMatcher.matching().withMatcher("question", GenericPropertyMatchers.contains()).withIgnoreCase().withIgnorePaths("questionId","answers","topic","isApprovedByAdmin");
 		
 		Example<Question> example = Example.of(questionWithTheseWords,exampleMatcher);
 		
+//		List<Question> questions = questionRepository.findAll(example);
+//		List<Question> approvedQuestions = new ArrayList<>();
+//		for(Question q:questions) {
+//			if(q.isApprovedByAdmin()) {
+//				approvedQuestions.add(q);
+//			}
+//		}
 		return questionRepository.findAll(example);
 	}
 	

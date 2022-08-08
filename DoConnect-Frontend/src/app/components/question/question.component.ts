@@ -28,8 +28,8 @@ export class QuestionComponent implements OnInit {
           this.questionService.searchQuestion(this.search).subscribe(
             response=>{
               if(response != null){
-                console.log(response);
                 this.questions = response;
+                this.message = "";
                 if(this.questions.length == 0){
                   this.message = "No Matches Found!";
                 }
@@ -48,8 +48,5 @@ export class QuestionComponent implements OnInit {
     this.router.navigate(["dashboard/answer/"+element.questionId+"/"+this.search]);
   }
 
-  call(question:any){
-console.log(question);
-  }
 
 }

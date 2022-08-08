@@ -35,7 +35,6 @@ export class AnswerComponent implements OnInit {
         this.questionService.getAnswersByQuestionId(this.questionId).subscribe(
           response=>{
             if(response != null){
-            console.log(response);
             this.answers = response;
             }
             if(this.answers.length == 0){
@@ -43,7 +42,6 @@ export class AnswerComponent implements OnInit {
             }
             else{
               this.question = this.answers[0].question;
-              console.log(this.question);
             }
           }
         )
@@ -52,7 +50,6 @@ export class AnswerComponent implements OnInit {
     this.authenticationService.getUserProfile().subscribe(
       response=>{
         if(response!=null){
-          console.log(response);
           this.currentUser = response;
           
         }
@@ -65,8 +62,8 @@ export class AnswerComponent implements OnInit {
     if(this.answerForm.valid){
       this.answerService.submitAnswer(answerForm,this.currentUser.userId,this.questionId).subscribe(
         response=>{
-          console.log(response);
-          this.response = "submitted!"
+          if(response!=null)
+          this.response = "Submitted successfully!";
         }
       )
     }

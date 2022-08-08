@@ -7,5 +7,5 @@ import com.doconnect.qanda.entity.Question;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long>{
-
+	Question findByIsApprovedByAdmin(boolean isApprovedByAdmin);
 }
