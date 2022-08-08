@@ -48,4 +48,8 @@ export class QuestionComponent implements OnInit {
     this.router.navigate(["dashboard/answer/"+element.questionId+"/"+this.search]);
   }
 
+  call(question:any){
+console.log(question);
+  }
+
 }

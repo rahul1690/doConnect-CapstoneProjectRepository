@@ -55,3 +55,13 @@ public class AdminRoleController {
 		return userService.findUserByQuestionId(questionId);
 	}
 	
+	@GetMapping("/approveQuestionById/{questionId}")
+	public int approveQuestionById(@PathVariable Long questionId) {
+		return userService.approveQuestionById(questionId);
+	}
+	
+	@GetMapping("/approveAnswerById/{answerId}")
+	public int approveAnswerById(@PathVariable Long answerId) {
+		return userService.approveAnswerById(answerId);
+	}
+}

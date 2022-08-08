@@ -16,6 +16,7 @@ import com.doconnect.qanda.entity.Answer;
 import com.doconnect.qanda.entity.Question;
 import com.doconnect.qanda.entity.User;
 import com.doconnect.qanda.exceptions.UsernameNotFoundException;
+import com.doconnect.qanda.repository.QuestionRepository;
 import com.doconnect.qanda.repository.UserRepository;
 
 @Service
@@ -32,6 +33,9 @@ public class UserServiceImpl {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	QuestionRepository questionRepository;
 	
 	
 	public User addUser(User user) {
@@ -106,4 +110,16 @@ public class UserServiceImpl {
 		return user.getAnswers();
 	}
 
+	public int approveQuestionById(Long questionId) {
+		Question question = questionService.findQuestionById(questionId);
+		question.setApprovedByAdmin(true);
+		questionRepository.save(question);
+		return 1;
+	}
 	
+	public int approveAnswerById(Long answerId) {
+		Answer answer = answerService.findAnswerById(answerId);
+		answer.setApprovedByAdmin(true);
+		return 1;
+	}
+}
