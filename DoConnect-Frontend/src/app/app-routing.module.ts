@@ -50,7 +50,7 @@ const routes: Routes = [
     { path:'questionsby/:userId',component:QuestionAskedByUserComponent},
     { path:'answersby/:userId',component:AnswerGivenByUserComponent},
     { path:'approvequestions',component:ApproveQuestionsComponent},
-    { path:'approveanswers/:questionId',component:ApproveAnswersComponent},
+    { path:'approveanswers',component:ApproveAnswersComponent},
     { path:'message',component:MessageComponent},
     { path:'edituser/:userId',component:EdituserComponent}
   ],canActivate:[AdminauthguardService]},

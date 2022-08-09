@@ -9,9 +9,7 @@ import { Answer } from 'src/assets/class/Answer';
   providedIn: 'root'
 })
 export class AdminService {
-  
-  
-  
+
 
   constructor(private http:HttpClient) { }
 
@@ -52,5 +50,17 @@ export class AdminService {
 
   deleteUserById(userId: any) {
     return this.http.delete(this.apiUrl+"deleteUserById/"+userId);
+  }
+
+  getUserById(userId:any):Observable<User>{
+    return this.http.get<User>(this.apiUrl+"getUserById/"+userId);
+  }
+
+  updateUserDetails(user: User,userId:any) {
+    return this.http.post(this.apiUrl+"updateUserById/"+userId,user);
+  }
+   
+  deleteAllChat(){
+    return this.http.delete(this.apiUrl+"deleteAllChat");
   }
 }

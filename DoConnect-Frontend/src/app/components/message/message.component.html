@@ -13,7 +13,7 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                    <div><button mat-raised-button type="submit" >Send</button></div>
+                    <div><button mat-raised-button type="submit" [style.background-color]="'rgb(3,148,135)'">Send</button></div>
             </div>
         </form>
     </mat-card>
@@ -22,7 +22,7 @@
     <mat-card class="_reply">
         <div *ngIf="messages!=undefined">
             <div *ngFor="let m of messages">
-                <div>{{m.user.firstName}} --> {{m.message}} <small>({{m.messageTime | date:'short'}})</small></div>
+                <div ><span [style.color]="'green'">{{m.user.firstName}} -> {{m.message}}</span><small>({{m.messageTime | date:'E,hh:mm'}})</small>  </div>
                 <br>
             </div>
         </div>

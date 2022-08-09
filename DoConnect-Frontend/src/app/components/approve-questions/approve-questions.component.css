@@ -10,8 +10,10 @@
 
 .approve{
    background-color:rgb(3,148,135);
+   margin: 0 1vh;
 }
 
 .delete{
+    margin: 0 1vh;
     background-color: red;
 }

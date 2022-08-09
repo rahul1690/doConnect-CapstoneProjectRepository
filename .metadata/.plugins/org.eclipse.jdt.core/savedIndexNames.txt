@@ -34,7 +34,6 @@ INDEX VERSION 1.131+H:\Capstone_Project\.metadata\.plugins\org.eclipse.jdt.core
 48799723.index
 512311558.index
 1865797976.index
-1657777240.index
 2464193837.index
 2442905145.index
 596586957.index

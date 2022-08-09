@@ -16,6 +16,7 @@ import com.doconnect.qanda.entity.Answer;
 import com.doconnect.qanda.entity.Question;
 import com.doconnect.qanda.entity.User;
 import com.doconnect.qanda.serviceImpl.AnswerServiceImpl;
+import com.doconnect.qanda.serviceImpl.MessageServiceImpl;
 import com.doconnect.qanda.serviceImpl.QuestionServiceImpl;
 import com.doconnect.qanda.serviceImpl.UserServiceImpl;
 
@@ -34,6 +35,9 @@ public class AdminRoleController {
 	@Autowired
 	AnswerServiceImpl answerService;
 	
+	@Autowired
+	MessageServiceImpl messageService;
+	
 	@PostMapping("/registerAdmin")
 	public int registerAdmin(@RequestBody User user) {
 		user.setRoles("ROLE_ADMIN");
@@ -43,6 +47,11 @@ public class AdminRoleController {
 	@GetMapping("/getUsers")
 	public List<User> getUsers(){
 		return userService.getUserList();
+	}
+	
+	@GetMapping("/getUserById/{userId}")
+	public User getUserById(@PathVariable Long userId) {
+		return userService.findUserById(userId);
 	}
 	
 	@DeleteMapping("/deleteUserById/{userId}")
@@ -93,6 +102,11 @@ public class AdminRoleController {
 	@DeleteMapping("deleteAnswerById/{answerId}")
 	public void deleteAnswerById(@PathVariable Long answerId) {
 		answerService.deleteAnswerById(answerId);
+	}
+	
+	@DeleteMapping("deleteAllChat")
+	public void deleteAllChat() {
+		messageService.deleteAllMessages();
 	}
 	
 }

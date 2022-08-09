@@ -1,3 +1,5 @@
+import { AdminService } from './../../services/admin.service';
+import { MessageService } from 'src/app/services/message.service';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +12,7 @@ import { QuestionService } from 'src/app/services/question.service';
 })
 export class AdmindashboardComponent implements OnInit {
 
-  constructor(private router:Router,private questionService:QuestionService,private authenticationService:AuthenticationService) { }
+  constructor(private router:Router,private questionService:QuestionService,private authenticationService:AuthenticationService,private adminService:AdminService) { }
 
   footer_ = true;
   ngOnInit(): void {
@@ -71,13 +73,22 @@ export class AdmindashboardComponent implements OnInit {
   approveAnswers(){
     this.askQuestion= false;
     this.footer_ = false;
-    this.router.navigate(["admindashboard/questions"])
+    this.router.navigate(["admindashboard/approveanswers"])
   }
 
   getChat(){
     this.footer_ = false;
     this.askQuestion = false
     this.router.navigate(["admindashboard/message"]);
+  }
+
+  deleteAllChat(){
+    this.adminService.deleteAllChat().subscribe(
+      response=>{
+        if(response!=null)
+        console.log("Deleted All Chat");
+      }
+    )
   }
 
 }

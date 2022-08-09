@@ -1,3 +1,4 @@
+import { Answer } from 'src/assets/class/Answer';
 import { Question } from 'src/assets/class/Question';
 import { AdminService } from './../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,18 +20,12 @@ export class ApproveAnswersComponent implements OnInit {
   question!:Question;
 
   constructor(private fb:FormBuilder,private route:ActivatedRoute,private router:Router,private questionService:QuestionService,private answerService:AnswerService,private authenticationService:AuthenticationService,private adminService:AdminService) { }
-  answers:any;
+  answers!:Answer[];
   questionId:any;
   currentUser:any;
-  displayedColumns: any[] = [ 'answer','answeredDateAndTime','answeredBy','approve','delete'];
-  answerForm = this.fb.group({
-    answer : ['',[Validators.required]],
-  })
+  displayedColumns: any[] = ['question','topic','askedAt','askedBy','answer','answeredDateAndTime','answeredBy','approve','delete'];
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(
-      param => {
-        this.questionId = param.get('questionId');
         this.adminService.getAnswersForApproval().subscribe(
           response=>{
             if(response != null){
@@ -45,8 +40,7 @@ export class ApproveAnswersComponent implements OnInit {
             }
           }
         )
-      }
-    )
+
     this.authenticationService.getUserProfile().subscribe(
       response=>{
         if(response!=null){
@@ -66,16 +60,6 @@ export class ApproveAnswersComponent implements OnInit {
     )
   }
 
-  onSubmit(answerForm:any){
-
-    if(this.answerForm.valid){
-      this.answerService.submitAnswer(answerForm,this.currentUser.userId,this.questionId).subscribe(
-        response=>{
-          this.response = "Your Response has been recorded!"
-        }
-      )
-    }
-  }
 
   deleteAnswer(answer:any){
     this.adminService.deleteAnswerById(answer.answerId).subscribe(
@@ -87,10 +71,5 @@ export class ApproveAnswersComponent implements OnInit {
     )
   }
 
-
-
-  get answer(){
-    return this.answerForm.get('answer');
-  }
 
 }

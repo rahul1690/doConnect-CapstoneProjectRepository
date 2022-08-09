@@ -33,7 +33,10 @@ public class MessageServiceImpl {
 		return messageRepository.findAll();
 	}
 	
-
+	public void deleteAllMessages() {
+		messageRepository.deleteAll();
+		notifyChat();
+	}
 	
 	public void notifyChat() {
 		final String entityTopic = getEntityTopic();

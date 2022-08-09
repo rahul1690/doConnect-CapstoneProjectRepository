@@ -1,70 +1,54 @@
-<div class="split_">
-    <div class="question_" *ngIf=" question != undefined">
-      <mat-card> <b>Question:</b>{{question.question}}</mat-card>
-      <mat-card><b>Topic:</b> {{question.topic}}</mat-card> 
-      <mat-card><b>Asked At:</b>{{question.askedDateAndTime | date:'short' }}</mat-card>
-      <mat-card><b>Asked By: </b>{{question.user_question.firstName}}</mat-card>
+
+  <div class="answer-list">
+    <table mat-table [dataSource]="answers" class="mat-table" *ngIf="answers != null && answers!= undefined">
+      <ng-container matColumnDef="question">
+        <th mat-header-cell *matHeaderCellDef> <b>Question</b></th>
+        <td mat-cell *matCellDef="let element">{{element.question.question}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="topic">
+        <th mat-header-cell *matHeaderCellDef> <b>Topic</b></th>
+        <td mat-cell *matCellDef="let element">{{element.question.topic}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="askedAt">
+        <th mat-header-cell *matHeaderCellDef> <b>Asked At</b></th>
+        <td mat-cell *matCellDef="let element">{{element.question.askedDateAndTime | date:'short'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="askedBy">
+        <th mat-header-cell *matHeaderCellDef> <b>Asked By</b></th>
+        <td mat-cell *matCellDef="let element">{{element.question.user_question.firstName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="answer">
+        <th mat-header-cell *matHeaderCellDef> <b>Answer</b></th>
+        <td mat-cell *matCellDef="let element">{{element.answer}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="answeredDateAndTime">
+        <th mat-header-cell *matHeaderCellDef> <b>Answered at</b> </th>
+        <td mat-cell *matCellDef="let element">{{element.answeredDateAndTime | date:'short'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="answeredBy">
+        <th mat-header-cell *matHeaderCellDef> <b>Answered By</b> </th>
+        <td mat-cell *matCellDef="let element">{{element.user_answer.firstName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="approve">
+        <th mat-header-cell *matHeaderCellDef> <b>Approve</b> </th>
+        <td mat-cell *matCellDef="let element"><button mat-raised-button class="approve_"
+            (click)="approveAnswer(element)">Approve</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> <b>Delete</b> </th>
+        <td mat-cell *matCellDef="let element"><button class="delete" mat-raised-button
+            (click)=deleteAnswer(element)>Delete</button></td>
+      </ng-container>
+
+      <button mat-raised-button>Add Answer</button>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
-  <br>
-    <div class="answer-list" >
-        <table mat-table [dataSource]="answers" class="mat-table"*ngIf="question!= undefined && answers != null">
-    
-              <ng-container matColumnDef="answer">
-                <th mat-header-cell *matHeaderCellDef> <b>Answer</b></th>
-                <td mat-cell *matCellDef="let element">{{element.answer}}</td>
-              </ng-container>
-              
-              <ng-container matColumnDef="answeredDateAndTime">
-                <th mat-header-cell *matHeaderCellDef> <b>Answered at</b> </th>
-                <td mat-cell *matCellDef="let element" >{{element.answeredDateAndTime | date:'short'}}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="answeredBy">
-                <th mat-header-cell *matHeaderCellDef> <b>Answered By</b> </th>
-                <td mat-cell *matCellDef="let element" >{{element.user_answer.firstName}}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="approve">
-                <th mat-header-cell *matHeaderCellDef> <b>Approve</b> </th>
-                <td mat-cell *matCellDef="let element" ><button mat-raised-button class="approve_" (click)="approveAnswer(element)">Approve</button></td>
-              </ng-container>
-
-              <ng-container matColumnDef="delete">
-                <th mat-header-cell *matHeaderCellDef> <b>Delete</b> </th>
-                <td mat-cell *matCellDef="let element" ><button class="delete" mat-raised-button (click)= deleteAnswer(element)>Delete</button></td>
-              </ng-container>
-              
-              <button mat-raised-button >Add Answer</button>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-        </div>
-          <br>
-          <div class="answer" style="text-align: center;">
-            <mat-card class="example-card">
-                <form [formGroup]="answerForm" (ngSubmit)="onSubmit(answerForm.value)" class="form-class">
-                    <div class="heading">
-                        <h2>Answer Form</h2>
-                    </div>
-                    <div class="example-container">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Answer</mat-label>
-                            <input matInput placeholder="Write Your Answer" id="question" class="_input" formControlName="answer">
-                            <mat-error *ngIf="!answer?.dirty && answer?.touched || answer?.invalid">required field*
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-        
-                    <br>
-        
-                    <div style="text-align: center;">
-                        <button mat-raised-button type="submit" >Submit</button>
-                        </div>
-        
-                        <b><div style="color:green;text-align: center;">{{response}}</div></b>
-                </form>
-            </mat-card>
-        </div>
-        <b><div style="color:green;text-align: center;">{{message}}</div></b>
-
-    </div>

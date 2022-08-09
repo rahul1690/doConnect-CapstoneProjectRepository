@@ -42,4 +42,13 @@ approve(question:any){
     }
   )
 }
+
+delete(question:any){
+  this.adminService.deleteQuestionById(question.questionId).subscribe(
+    response=>{
+      if(response)
+      console.log(response);
+    }
+  )
+}
 }
