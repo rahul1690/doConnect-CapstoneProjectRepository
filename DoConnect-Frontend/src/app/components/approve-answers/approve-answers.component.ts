@@ -1,3 +1,4 @@
+import { Question } from 'src/assets/class/Question';
 import { AdminService } from './../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -15,13 +16,13 @@ export class ApproveAnswersComponent implements OnInit {
 
   message:any;
   response:any;
-  question:any;
+  question!:Question;
 
   constructor(private fb:FormBuilder,private route:ActivatedRoute,private router:Router,private questionService:QuestionService,private answerService:AnswerService,private authenticationService:AuthenticationService,private adminService:AdminService) { }
   answers:any;
   questionId:any;
   currentUser:any;
-  displayedColumns: any[] = [ 'answer','answeredDateAndTime','answeredBy','approve'];
+  displayedColumns: any[] = [ 'answer','answeredDateAndTime','answeredBy','approve','delete'];
   answerForm = this.fb.group({
     answer : ['',[Validators.required]],
   })
@@ -29,8 +30,8 @@ export class ApproveAnswersComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       param => {
-        this.questionId = param.getAll('questionId');
-        this.questionService.getAnswersByQuestionId(this.questionId).subscribe(
+        this.questionId = param.get('questionId');
+        this.adminService.getAnswersForApproval().subscribe(
           response=>{
             if(response != null){
             this.answers = response;
@@ -39,6 +40,7 @@ export class ApproveAnswersComponent implements OnInit {
               this.message="No Answers Available!";
             }
             else{
+              console.log(this.answers);
               this.question = this.answers[0].question;
             }
           }
@@ -73,6 +75,16 @@ export class ApproveAnswersComponent implements OnInit {
         }
       )
     }
+  }
+
+  deleteAnswer(answer:any){
+    this.adminService.deleteAnswerById(answer.answerId).subscribe(
+      response=>{
+        if(response){
+          console.log("Deleted Answer");
+        }
+      }
+    )
   }
 
 

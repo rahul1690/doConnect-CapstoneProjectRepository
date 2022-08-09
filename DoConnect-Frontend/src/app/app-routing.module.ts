@@ -1,3 +1,5 @@
+import { EdituserComponent } from './components/edituser/edituser.component';
+import { MessageComponent } from './components/message/message.component';
 import { ApproveAnswersComponent } from './components/approve-answers/approve-answers.component';
 import { ApproveQuestionsComponent } from './components/approve-questions/approve-questions.component';
 import { AdminauthguardService } from './services/adminauthguard.service';
@@ -32,7 +34,8 @@ const routes: Routes = [
     { path:'profile',component:ProfileComponent},
     { path:'askquestion',component:AskQuestionComponent},
     { path:'questionsby/:userId',component:QuestionAskedByUserComponent},
-    { path:'answersby/:questionId/:userId',component:AnswerGivenByUserComponent}
+    { path:'answersby/:questionId/:userId',component:AnswerGivenByUserComponent},
+    { path:'message',component:MessageComponent}
   ],canActivate:[AuthguardService]},
 
 
@@ -47,7 +50,9 @@ const routes: Routes = [
     { path:'questionsby/:userId',component:QuestionAskedByUserComponent},
     { path:'answersby/:userId',component:AnswerGivenByUserComponent},
     { path:'approvequestions',component:ApproveQuestionsComponent},
-    { path:'approveanswers/:questionId',component:ApproveAnswersComponent}
+    { path:'approveanswers/:questionId',component:ApproveAnswersComponent},
+    { path:'message',component:MessageComponent},
+    { path:'edituser/:userId',component:EdituserComponent}
   ],canActivate:[AdminauthguardService]},
 
 

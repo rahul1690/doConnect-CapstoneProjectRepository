@@ -10,6 +10,8 @@ import { Answer } from 'src/assets/class/Answer';
 })
 export class AdminService {
   
+  
+  
 
   constructor(private http:HttpClient) { }
 
@@ -38,5 +40,17 @@ export class AdminService {
 
   approveAnswerById(answerId: any){
     return this.http.get(this.apiUrl+"approveAnswerById/"+answerId);
+  }
+
+  deleteQuestionById(questionId: any) {
+    return this.http.delete(this.apiUrl+"deleteAnswerById/"+questionId);
+  }
+
+  deleteAnswerById(answerId:any) {
+    return this.http.delete(this.apiUrl+"deleteAnswerById/"+answerId);
+  }
+
+  deleteUserById(userId: any) {
+    return this.http.delete(this.apiUrl+"deleteUserById/"+userId);
   }
 }

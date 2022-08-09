@@ -18,7 +18,7 @@ export class ApproveQuestionsComponent implements OnInit {
 
   constructor(private questionService:QuestionService,private router:Router,private authenticationService:AuthenticationService,private adminService:AdminService) { }
 
-  displayedColumns: any[] = ['questionId', 'topic', 'question','askedDateAndTime', 'approve'];
+  displayedColumns: any[] = ['questionId', 'topic', 'question','askedDateAndTime', 'approve','delete'];
   ngOnInit(): void {
           this.adminService.getQuestionsForApproval().subscribe(
             response=>{

@@ -57,6 +57,11 @@ public class User {
 	@ToString.Exclude
 	@JsonIgnore
 	private List<Answer> answers;
+	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	@ToString.Exclude
+	private List<Message> message;
 
 	public Long getUserId() {
 		return userId;

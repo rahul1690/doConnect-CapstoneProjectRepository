@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
@@ -21,6 +23,7 @@ import com.doconnect.qanda.entity.Question;
 import com.doconnect.qanda.entity.User;
 import com.doconnect.qanda.exceptions.QuestionNotFoundException;
 import com.doconnect.qanda.repository.QuestionRepository;
+import com.doconnect.qanda.repository.UserRepository;
 
 @Service
 public class QuestionServiceImpl {
@@ -31,22 +34,33 @@ public class QuestionServiceImpl {
 	@Autowired
 	private AnswerServiceImpl answerService;
 	
+	@Autowired
+	private EmailSenderService emailSenderService;
+	
+
+	@Autowired
+	private UserRepository userRepository;
+	
 	
 	public Question addQuestion(Question question, Long userId) {
 		question.setAskedDateAndTime(LocalDateTime.now());
 		User user = new User();
 		user.setUserId(userId);
 		question.setUser_question(user);
-		//Path path = Paths.get("H:\\Capstone_Project\\questionImg");
-//		try {
-//			 Files.copy(questionImg.getInputStream(),path.resolve(questionImg.getOriginalFilename()));
-//			String imgpath  = path.toString()+"\\"+questionImg.getOriginalFilename();
-//			System.out.println(imgpath);
-//			question.setImgPath(imgpath);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-		return questionRepository.save(question);
+		Optional<User> mailUser =  userRepository.findById(userId);
+		if(mailUser.isPresent()) {
+			user = mailUser.get();
+			if(user.getRoles().equals("ROLE_USER")) {
+				questionRepository.save(question);
+				emailSenderService.sendEmail("rahb78205@gmail.com", "Question Approval", "Question Asked by "+user.getFirstName()+" "+ user.getLastName());	
+			}
+			else {
+				question.setApprovedByAdmin(true);
+				questionRepository.save(question);
+			}
+			}
+		
+		return question;
 	}
 	
 	public List<Question> getQuestionList(){
@@ -113,11 +127,11 @@ public class QuestionServiceImpl {
 				Files.copy(file.getInputStream(), filePath.resolve(file.getOriginalFilename()));
 				String imgpath  = filePath.toString()+"\\"+file.getOriginalFilename();
 				System.out.println(imgpath);
-				
 				Question question = new Question();
 				question = findQuestionById(id);
 				question.setImgPath(imgpath);
 				questionRepository.save(question);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				return -1;
@@ -129,6 +143,4 @@ public class QuestionServiceImpl {
 	public List<Question> getQuestionsForApproval() {
 		return questionRepository.findByIsApprovedByAdmin(false);
 	}
-	
-	
 }

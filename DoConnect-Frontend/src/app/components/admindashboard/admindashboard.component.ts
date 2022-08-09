@@ -74,4 +74,10 @@ export class AdmindashboardComponent implements OnInit {
     this.router.navigate(["admindashboard/questions"])
   }
 
+  getChat(){
+    this.footer_ = false;
+    this.askQuestion = false
+    this.router.navigate(["admindashboard/message"]);
+  }
+
 }

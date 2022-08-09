@@ -60,6 +60,12 @@
     margin-right: 5px;
 }
 
-.approve{
+.approve_{
     background-color: rgb(3,148,135);
 }
+
+
+ 
+ .delete{
+     background-color: red;
+ }

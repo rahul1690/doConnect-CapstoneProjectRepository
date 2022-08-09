@@ -6,6 +6,8 @@
                 <mat-icon>menu</mat-icon>
                 <mat-menu #menu="matMenu" class="menu_">
                     <button mat-menu-item (click)="openProfile()">Profile</button>
+                    <button mat-menu-item (click)="approveQuestions()">Approve Questions</button>
+                    <button mat-menu-item (click)="approveAnswers()">Approve Answers</button>
                     <button mat-menu-item (click)="registerAdmin()">Register Admin</button>
                     <button mat-menu-item (click)="getUsers()">Users</button>
                     <button mat-menu-item>Questions Asked</button>
@@ -36,22 +38,16 @@
     <div class="main-menu" >
         <router-outlet></router-outlet>
         <div class="approval_" *ngIf="askQuestion">
-            <b><h2>Approve</h2></b>
-            <div class="approval-childs_">
-                <button mat-raised-button color="primary" (click)="approveQuestions()">Questions</button>
-                <button mat-raised-button color="primary"(click)="approveAnswers()">Answers</button>
+            <div class="left-box">
                 <div class="ask-question" *ngIf="askQuestion" (click)="askQuestionPage()">
                     <img src="../../../assets/img/question.png" width="80vw" alt="">
                     <b>
                         <p>Ask Question</p>
                     </b>
-                </div>
+                    <br>
             </div>
-            <div class="ask-question" *ngIf="askQuestion" (click)="askQuestionPage()">
-                <img src="../../../assets/img/question.png" width="80vw" alt="">
-                <b>
-                    <p>Ask Question</p>
-                </b>
+            <br>
+            <button mat-button (click)="getChat()" class="chat">Chat Box</button>
             </div>
         </div>
         <br>

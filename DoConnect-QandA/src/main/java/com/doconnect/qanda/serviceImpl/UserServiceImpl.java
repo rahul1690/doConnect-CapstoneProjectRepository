@@ -14,10 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.doconnect.qanda.entity.Answer;
+import com.doconnect.qanda.entity.Message;
 import com.doconnect.qanda.entity.Question;
 import com.doconnect.qanda.entity.User;
 import com.doconnect.qanda.exceptions.UsernameNotFoundException;
 import com.doconnect.qanda.repository.AnswerRepository;
+import com.doconnect.qanda.repository.MessageRepository;
 import com.doconnect.qanda.repository.QuestionRepository;
 import com.doconnect.qanda.repository.UserRepository;
 
@@ -42,6 +44,11 @@ public class UserServiceImpl {
 	@Autowired
 	AnswerRepository answerRepository;
 	
+	@Autowired
+	MessageRepository messageRepository;
+	
+	@Autowired
+	WebSocketService webSocketService;
 	
 	public int addUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -86,10 +93,20 @@ public class UserServiceImpl {
 		return userRepository.save(user);
 	}
 	
-	public String deleteUserById(Long userId) {
-		User user =  findUserById(userId);
-		userRepository.deleteById(user.getUserId());
-		return "User with name "+user.getFirstName()+" "+user.getLastName()+" deleted";
+	public void deleteUserById(Long userId) {
+		 User user = findUserById(userId);
+		 if(user.getRoles().equals("ROLE_ADMIN")) {
+			 return;
+		 }
+		 Optional<Message> message =  messageRepository.findByUser(user);
+		 if(message.isPresent()) {
+			 messageRepository.delete(message.get());
+			userRepository.delete(user);
+		 }
+		 else {
+			 userRepository.delete(user);
+		 }
+		webSocketService.sendMessage("user");
 	}
 	
 	public List<Question> getQuestionsAskedByUser(Long userId){
@@ -120,7 +137,6 @@ public class UserServiceImpl {
 	public User getUserDetails() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userRepository.findByUsername(auth.getName());
-		System.out.println(user);
 		return user;
 	}
 
@@ -132,7 +148,6 @@ public class UserServiceImpl {
 	public int approveQuestionById(Long questionId) {
 		Question question = questionService.findQuestionById(questionId);
 		question.setApprovedByAdmin(true);
-		System.out.println(question+"dfgdg");
 		questionRepository.save(question);
 		return 1;
 	}
@@ -140,7 +155,6 @@ public class UserServiceImpl {
 	public int approveAnswerById(Long answerId) {
 		Answer answer = answerService.findAnswerById(answerId);
 		answer.setApprovedByAdmin(true);
-		System.out.println(answer+"dasf");
 		answerRepository.save(answer);
 		return 1;
 	}

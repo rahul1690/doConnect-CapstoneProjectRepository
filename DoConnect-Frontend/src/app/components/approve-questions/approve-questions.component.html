@@ -25,7 +25,12 @@
           
           <ng-container matColumnDef="approve">
             <th mat-header-cell *matHeaderCellDef> <b>Approve</b> </th>
-            <td mat-cell *matCellDef="let element" ><button mat-raised-button (click)= approve(element)>Approve</button></td>
+            <td mat-cell *matCellDef="let element" ><button class="approve" mat-raised-button (click)= approve(element)>Approve</button></td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> <b>Delete</b> </th>
+            <td mat-cell *matCellDef="let element" ><button class="delete" mat-raised-button (click)= approve(element)>Delete</button></td>
           </ng-container>
           
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

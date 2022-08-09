@@ -1,0 +1,30 @@
+
+    <mat-card class="example-card">
+        <form [formGroup]="messageForm" (ngSubmit)="onSubmit(messageForm.value)" class="form-class">
+            <div class="heading">
+                <h2>Chat With Users</h2>
+            </div>
+            <div class="message-ho">
+                <div class="example-container">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Message</mat-label>
+                        <input matInput placeholder="Write Your message" id="question" class="_input" formControlName="message">
+                        <mat-error *ngIf="!message?.dirty && message?.touched || message?.invalid">required field*
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                    <div><button mat-raised-button type="submit" >Send</button></div>
+            </div>
+        </form>
+    </mat-card>
+<br>
+<div >
+    <mat-card class="_reply">
+        <div *ngIf="messages!=undefined">
+            <div *ngFor="let m of messages">
+                <div>{{m.user.firstName}} --> {{m.message}} <small>({{m.messageTime | date:'short'}})</small></div>
+                <br>
+            </div>
+        </div>
+    </mat-card>
+</div>

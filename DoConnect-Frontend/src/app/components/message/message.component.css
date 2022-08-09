@@ -1,0 +1,18 @@
+
+.message-ho{
+    display: flex;
+    text-align: center;
+}
+
+.mat-form-field{
+    width: 40vw;
+}
+
+.message-ho button{
+    margin-left: 5px;
+    margin-top: 1vh
+}
+
+._reply div{
+    width: 40vw;
+}

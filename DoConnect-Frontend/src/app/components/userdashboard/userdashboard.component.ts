@@ -41,6 +41,7 @@ export class UserdashboardComponent implements OnInit {
   }
 
   home(){this.askQuestion = true;
+    this.footer_ = true;
     this.router.navigate(['dashboard']);
   }
 
@@ -66,5 +67,11 @@ export class UserdashboardComponent implements OnInit {
   answersGiven(){
     this.footer_ = false;
     this.router.navigate(["dashboard/answersby",this.userId]);
+  }
+
+  getChat(){
+    this.footer_ = false;
+    this.askQuestion = false
+    this.router.navigate(["/dashboard/message"]);
   }
 }

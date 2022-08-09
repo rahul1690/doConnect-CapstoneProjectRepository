@@ -46,8 +46,8 @@ public class AdminRoleController {
 	}
 	
 	@DeleteMapping("/deleteUserById/{userId}")
-	public String deleteUserById(@PathVariable Long userId) {
-		return userService.deleteUserById(userId);
+	public void deleteUserById(@PathVariable Long userId) {
+		userService.deleteUserById(userId);
 	}
 	
 	@PostMapping("/updateUserById/{userId}")
@@ -84,4 +84,15 @@ public class AdminRoleController {
 	public int approveAnswerById(@PathVariable Long answerId) {
 		return userService.approveAnswerById(answerId);
 	}
+	
+	@DeleteMapping("deleteQuestionById/{questionId}")
+	public String deleteQuestionById(@PathVariable Long questionId) {
+		return questionService.deleteQuestionById(questionId);
+	}
+	
+	@DeleteMapping("deleteAnswerById/{answerId}")
+	public void deleteAnswerById(@PathVariable Long answerId) {
+		answerService.deleteAnswerById(answerId);
+	}
+	
 }

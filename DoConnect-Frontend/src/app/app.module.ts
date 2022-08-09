@@ -30,6 +30,8 @@ import { QuestionAskedByUserComponent } from './components/question-asked-by-use
 import { AnswerGivenByUserComponent } from './components/answer-given-by-user/answer-given-by-user.component';
 import { ApproveQuestionsComponent } from './components/approve-questions/approve-questions.component';
 import { ApproveAnswersComponent } from './components/approve-answers/approve-answers.component';
+import { MessageComponent } from './components/message/message.component';
+import { EdituserComponent } from './components/edituser/edituser.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { ApproveAnswersComponent } from './components/approve-answers/approve-an
     AnswerGivenByUserComponent,
     ApproveQuestionsComponent,
     ApproveAnswersComponent,
+    MessageComponent,
+    EdituserComponent,
   ],
   imports: [
     BrowserModule,

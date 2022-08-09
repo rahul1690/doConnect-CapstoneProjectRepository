@@ -7,3 +7,11 @@
 .mat-raised-button{
     background-color: #2196F3; 
 }
+
+.approve{
+   background-color:rgb(3,148,135);
+}
+
+.delete{
+    background-color: red;
+}
